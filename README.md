@@ -1,3 +1,3 @@
 # NetworkProgrammingFinalAssignment
 
-Opdracht gemaakt met meerdere studenten.
+Final assignment for course "Network Programming"
