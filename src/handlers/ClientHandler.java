@@ -4,15 +4,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import java.io.IOException;
-
 import tree.*;
 
 import java.io.*;
-
+import java.io.IOException;
 import java.net.Socket;
 import java.util.stream.Collectors;
 
+// This class is responsible for handling clients connected to the server
 class ClientHandler implements Runnable
 {
     private Socket clientSocket;
@@ -24,6 +23,9 @@ class ClientHandler implements Runnable
         this.users = users;
     }
 
+    // This functions gets run on a new thread if a client connects to the server.
+    // It handles the in- and outputs with the user.
+    // For every client, this method gets executed.
     public void run()
     {
         try
@@ -31,23 +33,23 @@ class ClientHandler implements Runnable
             BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
 
-            // vraag om gebruikersnaam en wachtwoord
-            output.println("Voer uw gebruikersnaam in:");
+            // Ask for username and password
+            output.println("Insert username: ");
             String username = input.readLine();
-            output.println("Voer uw wachtwoord in:");
+            output.println("Insert password: ");
             String password = input.readLine();
 
-            // controleer of de gebruikersnaam en wachtwoord geldig zijn
+            // Check if username and passwords are valid
             if (users.containsKey(username) && users.get(username).equals(password))
             {
-                output.println("Welkom " + username + "!");
-                output.println("Dit zijn alle acties die u kan uitvoeren op de logs: 'add', 'remove' of 'show': ");
+                output.println("Welcome " + username + "!");
+                output.println("These are all the actions you can execute: 'add', 'remove' or 'show': ");
                 String action = input.readLine();
-                output.println("De actie die u heeft gekozen: " + action);
+                output.println("You chose: " + action);
 
                 if (action.equals("add"))
                 {
-                    output.println("Type de tekst die u wilt toevoegen aan uw logs: ");
+                    output.println("Insert the text you want to add to the logs: ");
                     String text = input.readLine();
 
                     BufferedReader reader = new BufferedReader(new FileReader("logs.json"));
@@ -78,12 +80,12 @@ class ClientHandler implements Runnable
                         e.printStackTrace();
                     }
 
-                    output.println("finished - connectie wordt kapot gemaakt!");
+                    output.println("Finished - Connection gets disconnected!");
                 }
 
                 if (action.equals("remove"))
                 {
-                    output.println("Type de tekst die u wilt verwijderen van uw logs: ");
+                    output.println("Insert the text you want to remove from the logs: ");
                     String text = input.readLine();
 
                     BufferedReader reader = new BufferedReader(new FileReader("logs.json"));
@@ -124,7 +126,7 @@ class ClientHandler implements Runnable
                         e.printStackTrace();
                     }
 
-                    output.println("finished - connectie wordt kapot gemaakt!");
+                    output.println("Finished - Connection gets disconnected!");
                 }
 
                 if (action.equals("show"))
@@ -151,21 +153,21 @@ class ClientHandler implements Runnable
                         }
                     }
 
-                    output.println("finished - connectie wordt kapot gemaakt!");
+                    output.println("Finished - Connection gets disconnected!");
                 }
             }
             else
             {
-                output.println("Ongeldige gebruikersnaam of wachtwoord");
+                output.println("Invalid username or password");
             }
 
-            // sluit de verbinding
+            // Close the connection
             clientSocket.close();
         }
 
         catch (IOException e)
         {
-            System.out.println("Er is een fout opgetreden bij de verwerking van de verbinding");
+            System.out.println("An error has occured while processing the connection");
         }
     }
 }

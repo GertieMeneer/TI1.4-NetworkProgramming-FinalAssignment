@@ -5,6 +5,7 @@ import tree.*;
 import java.net.*;
 import java.io.IOException;
 
+// This class is responsible for handling new connections made with the server
 public class AcceptHandler implements Runnable
 {
     private ServerSocket serverSocket;
@@ -19,7 +20,7 @@ public class AcceptHandler implements Runnable
     @Override
     public void run()
     {
-        // wacht op inkomende verbindingen
+        // Wait for incoming connections
         while (true)
         {
             Socket clientSocket = null;
@@ -27,9 +28,9 @@ public class AcceptHandler implements Runnable
             try
             {
                 clientSocket = serverSocket.accept();
-                System.out.println("Nieuwe verbinding van " + clientSocket.getInetAddress().getHostAddress());
+                System.out.println("New connections from " + clientSocket.getInetAddress().getHostAddress());
 
-                // maak een nieuwe thread om de verbinding te verwerken
+                // Make new thread to handle the client
                 ClientHandler clientHandler = new ClientHandler(clientSocket, users);
                 Thread thread = new Thread(clientHandler);
                 thread.start();
@@ -37,7 +38,7 @@ public class AcceptHandler implements Runnable
 
             catch (IOException e)
             {
-                System.out.println("Kon geen verbinding accepteren");
+                System.out.println("Could not accept connection");
             }
         }
     }

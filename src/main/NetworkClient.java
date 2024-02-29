@@ -7,8 +7,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+// This class contains the main function for starting the user app
 public class NetworkClient
 {
+    // This main function connects and communicates with the server and the user
     public static void main(String[] args)
     {
         boolean isLoginIn = false;
@@ -25,7 +27,7 @@ public class NetworkClient
 
             while (true)
             {
-                // lees de text van de server
+                // Read text from server
                 String serverText = in.readLine();
 
                 if(!(serverText == null))
@@ -33,7 +35,7 @@ public class NetworkClient
                     System.out.println(serverText);
                 }
 
-                // stuur een bericht naar de server
+                // Send message to server
                 Scanner scanner = new Scanner(System.in);
 
                 if (counter == 1)
@@ -51,12 +53,12 @@ public class NetworkClient
 
                 if(!(serverText == null))
                 {
-                    if (serverText.equals("Welkom " + name + "!"))
+                    if (serverText.equals("Welcome " + name + "!"))
                     {
                         isLoginIn = true;
                     }
 
-                    if (serverText.equals("Ongeldige gebruikersnaam of wachtwoord"))
+                    if (serverText.equals("Invalid username or password"))
                     {
                         break;
                     }
@@ -66,25 +68,25 @@ public class NetworkClient
                 {
                     if(!(serverText == null))
                     {
-                        if (serverText.equals("Dit zijn alle acties die u kan uitvoeren op de logs: 'add', 'remove' of 'show': "))
+                        if (serverText.equals("These are all the actions you can execute: 'add', 'remove' or 'show': "))
                         {
                             text = scanner.nextLine();
                             out.println(text);
                         }
 
-                        if (serverText.equals("Type de tekst die u wilt toevoegen aan uw logs: "))
+                        if (serverText.equals("Insert the text you want to add to the logs: "))
                         {
                             text = scanner.nextLine();
                             out.println(text);
                         }
 
-                        if (serverText.equals("Type de tekst die u wilt verwijderen van uw logs: "))
+                        if (serverText.equals("Insert the text you want to remove from the logs: "))
                         {
                             text = scanner.nextLine();
                             out.println(text);
                         }
 
-                        if (serverText.equals("finished - connectie wordt kapot gemaakt!"))
+                        if (serverText.equals("Finished - Connection gets disconnected!"))
                         {
                             break;
                         }
@@ -94,13 +96,13 @@ public class NetworkClient
                 counter++;
             }
 
-            // maak de verbinding kapot
+            // Disconnect the connection
             socket.close();
         }
 
         catch (IOException e)
         {
-            System.out.println("Server is not online!");
+            System.out.println("Error connecting to the server. Is it running?");
             //e.printStackTrace();
         }
     }

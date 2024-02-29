@@ -3,20 +3,23 @@ package tree;
 import java.util.ArrayList;
 import java.util.List;
 
+// This class represents a binary search tree
 public class BinarySearchTree
 {
-    private TreeNode root;
+    private TreeNode root;      // Root node of the tree
 
     public BinarySearchTree()
     {
         root = null;
     }
 
+    //Method to insert a key-value pair into the tree
     public void put(String key, String value)
     {
         root = put(root, key, value);
     }
 
+    // Recursive method to insert a key-value pair into a subtree rooted at node
     public TreeNode put(TreeNode node, String key, String value)
     {
         if (node == null)
@@ -42,6 +45,7 @@ public class BinarySearchTree
         return node;
     }
 
+    // Get the value associated with a given key
     public String get(String key)
     {
         TreeNode node = get(root, key);
@@ -54,6 +58,7 @@ public class BinarySearchTree
         return node.getValue();
     }
 
+    // Recursive method to retreive the node associated with a given key in a subtree rooted at node
     private TreeNode get(TreeNode node, String key)
     {
         if (node == null)
@@ -77,11 +82,13 @@ public class BinarySearchTree
         }
     }
 
+    // Checks if the tree contains a given key
     public boolean containsKey(String key)
     {
         return get(key) != null;
     }
 
+    // Retrieves all keys in the tree
     public List<String> getAllKeys()
     {
         List<String> keys = new ArrayList<>();
@@ -89,6 +96,7 @@ public class BinarySearchTree
         return keys;
     }
 
+    // Recursive helper method to traverse the tree in-order and collect keys
     private void getAllKeysHelper(TreeNode node, List<String> keys)
     {
         if (node == null)

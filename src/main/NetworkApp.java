@@ -1,4 +1,4 @@
-package mains;
+package main;
 
 import handlers.AcceptHandler;
 import org.json.simple.JSONArray;
@@ -11,11 +11,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// This class contains the main function for starting the server
 public class NetworkApp
 {
+    // In this main function, a binary search tree is being created
+    // After that, the server is being started so clients can connect
     public static void main(String[] args)
     {
-        // maak een binary search tree aan om gebruikersnamen en wachtwoorden op te slaan
+        // Create a binary search tree to save usernames and passwords
         BinarySearchTree users = new BinarySearchTree();
         users.put("Astrid", "password1");
         users.put("Bob", "password2");
@@ -56,26 +59,26 @@ public class NetworkApp
             e.printStackTrace();
         }
 
-        // start de server op
+        // Start server
         ServerSocket serverSocket = null;
 
         try
         {
             serverSocket = new ServerSocket(5000);
-            System.out.println("Server is gestart op poort 5000");
+            System.out.println("Server started on port 5000");
         }
 
         catch (IOException e)
         {
-            System.out.println("Kon geen verbinding maken op poort 5000");
+            System.out.println("Could not start the server on port 5000");
             System.exit(-1);
         }
 
-        // start de thread om inkomende verbindingen te verwerken
+        // Start a thread to process incoming connections
         Thread acceptThread = new Thread(new AcceptHandler(serverSocket, users));
         acceptThread.start();
 
-        // blijf de main thread actief houden zodat de applicatie niet afsluit
+        // Keep the main thread active (not the best way to do that lol)
         while (true)
         {
 
