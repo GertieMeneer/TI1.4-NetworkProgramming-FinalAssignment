@@ -10,3 +10,9 @@ After handing in the code, we had an assessment with the teachers asking us ques
 ## Date
 Year 1, Period 4
 June 21 2023
+
+## Project Description
+This project implements a simple client-server system for managing user logs.
+The server allows clients to connect, authenticate with a username and password, and perform actions such as adding, removing and showing logs associated with their username.
+User credentials are stored in a binary search tree, and logs are stored in a JSON file.
+The client application allows users to interact with the server through the console.
