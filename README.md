@@ -1,5 +1,5 @@
 # Network Programming Final Assignment
-This project was made by me and my friend: 
+This project was made by me and my friend: https://github.com/Stefsk-glitch
 ## Course Description
 In this course we learned how to program a multi-threaded network application in Java, based on the principles of object-oriënted programming.
 After handing in the code, we had an assessment with the teachers asking us questions about what we made.
