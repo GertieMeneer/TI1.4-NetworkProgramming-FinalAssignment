@@ -4,13 +4,6 @@ This project was made by me and my friend: https://github.com/Stefsk-glitch
 In this course we learned how to program a multi-threaded network application in Java, based on the principles of object-oriënted programming.
 After handing in the code, we had an assessment with the teachers asking us questions about what we made.
 
-## Grade
-6.5 / 10
-
-## Date
-Year 1, Period 4
-June 21 2023
-
 ## Project Description
 - This project implements a simple client-server system for managing user logs.
 - The server allows clients to connect, authenticate with a username and password, and perform actions such as adding, removing and showing logs associated with their username.
@@ -35,3 +28,9 @@ June 21 2023
 - Socketcommunication is robust (e.g. correctly disconnecting).
 - Using multi-threading to process a heavy workload.
 - A usefull project.
+
+## Grade
+6.5 / 10
+
+## Date
+Year 1, Period 4 | June 21 2023
