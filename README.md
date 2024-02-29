@@ -16,3 +16,22 @@ June 21 2023
 - The server allows clients to connect, authenticate with a username and password, and perform actions such as adding, removing and showing logs associated with their username.
 - User credentials are stored in a binary search tree, and logs are stored in a JSON file.
 - The client application allows users to interact with the server through the console.
+
+## Project Requirements
+### Must Haves:
+- Code language is Java.
+- Network communication between 2 apps using sockets.
+- Utilizes multiple threads in one application.
+- Contains at least one of the following subjects:
+  - Binary Search Tree
+  - Collection Streams
+  - Regulare Expressions
+  - Writing a generic class
+
+### Should Haves:
+- Project is documented (e.g. diagrams).
+- Bi-directional socketcommunication between two applications.
+- The server is able to handle multiple connections at the same time.
+- Socketcommunication is robust (e.g. correctly disconnecting).
+- Using multi-threading to process a heavy workload.
+- A usefull project.
